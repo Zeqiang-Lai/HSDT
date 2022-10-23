@@ -7,18 +7,6 @@ def hsdt():
     net.bandwise = False
     return net
 
-def hsdt_pnp():
-    net = HSDT(2, 16, 5, [1, 3])
-    net.use_2dconv = False
-    net.bandwise = False
-    return net
-
-def hsdt_ssr():
-    from .arch import HSDTSSR
-    net = HSDTSSR(1, 16, 5, [1, 3])
-    net.use_2dconv = False
-    net.bandwise = False
-    return net
 
 def hsdt_4():
     net = HSDT(1, 4, 5, [1, 3])
@@ -55,19 +43,27 @@ def hsdt_deep():
     return net
 
 
-""" ablations
+""" Extension
 """
 
 
-def hsdt_conv3d():
-    from . import arch
-    import torch.nn as nn
-    arch.Conv3d = nn.Conv3d
-
-    net = HSDT(1, 16, 5, [1, 3])
+def hsdt_pnp():
+    net = HSDT(2, 16, 5, [1, 3])
     net.use_2dconv = False
     net.bandwise = False
     return net
+
+
+def hsdt_ssr():
+    from .arch import HSDTSSR
+    net = HSDTSSR(1, 16, 5, [1, 3])
+    net.use_2dconv = False
+    net.bandwise = False
+    return net
+
+
+""" ablations
+"""
 
 
 def hsdt_pixelwise():
@@ -79,6 +75,8 @@ def hsdt_pixelwise():
     net.use_2dconv = False
     net.bandwise = False
     return net
+
+# ablation of ffn
 
 
 def hsdt_ffn():
@@ -115,7 +113,7 @@ def hsdt_gdfn():
     return net
 
 
-def hsdt_gfn():
+def hsdt_smffn1():
     from . import arch
     from .attention import GFNTransformerBlock
     arch.TransformerBlock = GFNTransformerBlock
@@ -124,6 +122,8 @@ def hsdt_gfn():
     net.use_2dconv = False
     net.bandwise = False
     return net
+
+# ablation of ssa
 
 
 def hsdt_ssa():
@@ -136,12 +136,14 @@ def hsdt_ssa():
     net.bandwise = False
     return net
 
+# ablation of s3conv
 
-def hsdt_sepconv():
+
+def hsdt_conv3d():
     from . import arch
     import torch.nn as nn
-    from .sepconv import SepConv3D_DW
-    arch.Conv3d = SepConv3D_DW.of(nn.Conv3d)
+    arch.Conv3d = nn.Conv3d
+
     net = HSDT(1, 16, 5, [1, 3])
     net.use_2dconv = False
     net.bandwise = False
@@ -151,28 +153,41 @@ def hsdt_sepconv():
 def hsdt_s3conv_sep():
     from . import arch
     import torch.nn as nn
-    from .sepconv import SepConv3D_MSEP
-    arch.Conv3d = SepConv3D_MSEP.of(nn.Conv3d)
+    from .sepconv import S3Conv_Sep
+    arch.Conv3d = S3Conv_Sep.of(nn.Conv3d)
     net = HSDT(1, 16, 5, [1, 3])
     net.use_2dconv = False
     net.bandwise = False
     return net
 
 
-def hsdt_s3convs():
+def hsdt_s3conv_seq():
     from . import arch
     import torch.nn as nn
-    from .sepconv import SepConv3D_MS
-    arch.Conv3d = SepConv3D_MS.of(nn.Conv3d)
+    from .sepconv import S3Conv_Seq
+    arch.Conv3d = S3Conv_Seq.of(nn.Conv3d)
     net = HSDT(1, 16, 5, [1, 3])
     net.use_2dconv = False
     net.bandwise = False
     return net
 
-# ablation one by one
+
+def hsdt_s3conv1():
+    from . import arch
+    import torch.nn as nn
+    from .sepconv import S3Conv1
+    arch.Conv3d = S3Conv1.of(nn.Conv3d)
+    net = HSDT(1, 16, 5, [1, 3])
+    net.use_2dconv = False
+    net.bandwise = False
+    return net
 
 
-def hsdt_wossa():
+""" Break down
+"""
+
+
+def baseline_s3conv():
     from . import arch
     from .attention import DummyTransformerBlock
     arch.TransformerBlock = DummyTransformerBlock
@@ -184,7 +199,7 @@ def hsdt_wossa():
     return net
 
 
-def hsdt_wossa_conv3d():
+def baseline_conv3d():
     from . import arch
     import torch.nn as nn
     arch.Conv3d = nn.Conv3d
@@ -224,9 +239,3 @@ def baseline_ssa():
     net.use_2dconv = False
     net.bandwise = False
     return net
-
-# baseline [running]
-# baseline + ssa
-# baseline + gssa
-# baseline + gssa + sm-ffn [done]
-# basseline + gssa + sm-ffn + s3conv [done]

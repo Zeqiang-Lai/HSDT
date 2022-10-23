@@ -1,3 +1,8 @@
+*.mat
+checkpoints
+results
+data
+*.pdf
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

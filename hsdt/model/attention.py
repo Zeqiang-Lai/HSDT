@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from einops import rearrange
 
 
-class SSA(nn.Module):
+class SpectralSelfAttention(nn.Module):
     def __init__(self, channel, num_bands, flex=False):
         super().__init__()
         self.channel = channel
@@ -40,7 +40,7 @@ class SSA(nn.Module):
         return q, attn
 
 
-class SpectralSelfAttention(nn.Module):
+class GuidedSpectralSelfAttention(nn.Module):
     def __init__(self, channel, num_bands, flex=False):
         super().__init__()
         self.channel = channel
@@ -85,7 +85,7 @@ class SpectralSelfAttention(nn.Module):
         return q, attn
 
 
-class PixelwiseSpectralSelfAttention(SpectralSelfAttention):
+class PixelwiseSpectralSelfAttention(GuidedSpectralSelfAttention):
     def __init__(self, channel, num_bands):
         super().__init__(channel, num_bands)
 
@@ -116,7 +116,7 @@ class PixelwiseSpectralSelfAttention(SpectralSelfAttention):
         return q, attn
 
 
-class SpectralSelfAttentionConvImpl(SpectralSelfAttention):
+class GuidedSpectralSelfAttentionConvImpl(GuidedSpectralSelfAttention):
     def __init__(self, channel, num_bands):
         super().__init__(channel, num_bands)
 
@@ -152,7 +152,7 @@ class SpectralSelfAttentionConvImpl(SpectralSelfAttention):
 """
 
 
-class ChannelEnhancedFeedForward(nn.Module):
+class ExtSelfModulatedFeedForward(nn.Module):
     def __init__(self, d_model, d_ff, bias=False):
         super().__init__()
         self.w_1 = nn.Linear(d_model, d_ff, bias=bias)
@@ -171,7 +171,7 @@ class ChannelEnhancedFeedForward(nn.Module):
         return x1 + x2
 
 
-class GatedFeedForward(nn.Module):
+class SelfModulatedFeedForward(nn.Module):
     def __init__(self, d_model, d_ff, bias=False):
         super().__init__()
         self.w_3 = nn.Linear(d_model, d_ff, bias=bias)
@@ -221,8 +221,8 @@ class TransformerBlock(nn.Module):
     def __init__(self, channels, num_bands=31, bias=False, flex=False):
         super().__init__()
         self.channels = channels
-        self.attn = SpectralSelfAttention(channels, num_bands, flex=flex)
-        self.ffn = ChannelEnhancedFeedForward(channels, channels * 2, bias=bias)
+        self.attn = GuidedSpectralSelfAttention(channels, num_bands, flex=flex)
+        self.ffn = ExtSelfModulatedFeedForward(channels, channels * 2, bias=bias)
 
     def forward(self, inputs):
         r, _ = self.attn(inputs)
@@ -250,14 +250,14 @@ class PixelwiseTransformerBlock(TransformerBlock):
         super().__init__(channels, num_bands, bias, flex)
         self.channels = channels
         self.attn = PixelwiseSpectralSelfAttention(channels, num_bands, flex=flex)
-        self.ffn = ChannelEnhancedFeedForward(channels, channels * 2, bias=bias)
+        self.ffn = ExtSelfModulatedFeedForward(channels, channels * 2, bias=bias)
 
 
 class FFNTransformerBlock(TransformerBlock):
     def __init__(self, channels, num_bands=31, bias=False, flex=False):
         super().__init__(channels, num_bands, bias, flex)
         self.channels = channels
-        self.attn = SpectralSelfAttention(channels, num_bands, flex=flex)
+        self.attn = GuidedSpectralSelfAttention(channels, num_bands, flex=flex)
         self.ffn = FeedForward(channels, channels * 2, bias=bias)
 
 
@@ -265,7 +265,7 @@ class GDFNTransformerBlock(TransformerBlock):
     def __init__(self, channels, num_bands=31, bias=False, flex=False):
         super().__init__(channels, num_bands, bias, flex)
         self.channels = channels
-        self.attn = SpectralSelfAttention(channels, num_bands, flex=flex)
+        self.attn = GuidedSpectralSelfAttention(channels, num_bands, flex=flex)
         self.ffn = GDFN(channels, channels * 2, bias=bias)
 
 
@@ -273,21 +273,21 @@ class GFNTransformerBlock(TransformerBlock):
     def __init__(self, channels, num_bands=31, bias=False, flex=False):
         super().__init__(channels, num_bands, bias, flex)
         self.channels = channels
-        self.attn = SpectralSelfAttention(channels, num_bands, flex=flex)
-        self.ffn = GatedFeedForward(channels, channels * 2, bias=bias)
+        self.attn = GuidedSpectralSelfAttention(channels, num_bands, flex=flex)
+        self.ffn = SelfModulatedFeedForward(channels, channels * 2, bias=bias)
 
 
 class SSATransformerBlock(TransformerBlock):
     def __init__(self, channels, num_bands=31, bias=False, flex=False):
         super().__init__(channels, num_bands, bias, flex)
         self.channels = channels
-        self.attn = SSA(channels, num_bands, flex=flex)
-        self.ffn = ChannelEnhancedFeedForward(channels, channels * 2, bias=bias)
+        self.attn = SpectralSelfAttention(channels, num_bands, flex=flex)
+        self.ffn = ExtSelfModulatedFeedForward(channels, channels * 2, bias=bias)
 
 
 class SSAFFNTransformerBlock(TransformerBlock):
     def __init__(self, channels, num_bands=31, bias=False, flex=False):
         super().__init__(channels, num_bands, bias, flex)
         self.channels = channels
-        self.attn = SSA(channels, num_bands, flex=flex)
+        self.attn = SpectralSelfAttention(channels, num_bands, flex=flex)
         self.ffn = FeedForward(channels, channels * 2, bias=bias)

@@ -9,12 +9,11 @@ def repeat(x):
     return [x] * 3
 
 
-class SepConv3D_PW(nn.Module):
+class S3Conv_Sep_PD(nn.Module):
     def __init__(self, BASECONV, in_ch, out_ch, k, s=1, p=1, bias=False):
         super().__init__()
         k, s, p = repeat(k), repeat(s), repeat(p)
 
-        # padding_mode = 'circular' if BASECONV == nn.Conv3d else 'zeros'
         padding_mode = 'zeros'
         self.pw_conv = BASECONV(in_ch, out_ch, (k[0], 1, 1), (s[0], 1, 1), (p[0], 0, 0), bias=bias, padding_mode=padding_mode)
         self.dw_conv = BASECONV(out_ch, out_ch, (1, k[1], k[2]), (1, s[1], s[2]), (0, p[1], p[2]), bias=bias, padding_mode=padding_mode)
@@ -26,11 +25,10 @@ class SepConv3D_PW(nn.Module):
 
     @staticmethod
     def of(base_conv):
-        return partial(SepConv3D_PW, base_conv)
+        return partial(S3Conv_Sep_PD, base_conv)
 
 
-class SepConv3D_DW(nn.Module):
-    # deep wise then point wise
+class S3Conv_Sep(nn.Module):
     def __init__(self, BASECONV, in_ch, out_ch, k, s=1, p=1, bias=False):
         super().__init__()
         k, s, p = repeat(k), repeat(s), repeat(p)
@@ -46,11 +44,10 @@ class SepConv3D_DW(nn.Module):
 
     @staticmethod
     def of(base_conv):
-        return partial(SepConv3D_DW, base_conv)
+        return partial(S3Conv_Sep, base_conv)
 
 
-class SepConv3D_CA(nn.Module):
-    # deep wise then point wise
+class S3Conv_Sep_CA(nn.Module):
     def __init__(self, BASECONV, in_ch, out_ch, k, s=1, p=1, bias=False):
         super().__init__()
         k, s, p = repeat(k), repeat(s), repeat(p)
@@ -68,10 +65,10 @@ class SepConv3D_CA(nn.Module):
 
     @staticmethod
     def of(base_conv):
-        return partial(SepConv3D_CA, base_conv)
+        return partial(S3Conv_Sep_CA, base_conv)
 
 
-class SepConv3D_M(nn.Module):
+class S3Conv(nn.Module):
     # deep wise then point wise
     def __init__(self, BASECONV, in_ch, out_ch, k, s=1, p=1, bias=False):
         super().__init__()
@@ -93,11 +90,10 @@ class SepConv3D_M(nn.Module):
 
     @staticmethod
     def of(base_conv):
-        return partial(SepConv3D_M, base_conv)
+        return partial(S3Conv, base_conv)
 
 
-class SepConv3D_MSEP(nn.Module):
-    # deep wise then point wise
+class S3Conv_Seq(nn.Module):
     def __init__(self, BASECONV, in_ch, out_ch, k, s=1, p=1, bias=False):
         super().__init__()
         k, s, p = repeat(k), repeat(s), repeat(p)
@@ -118,10 +114,10 @@ class SepConv3D_MSEP(nn.Module):
 
     @staticmethod
     def of(base_conv):
-        return partial(SepConv3D_MSEP, base_conv)
+        return partial(S3Conv_Seq, base_conv)
 
 
-class SepConv3D_MS(nn.Module):
+class S3Conv1(nn.Module):
     def __init__(self, BASECONV, in_ch, out_ch, k, s=1, p=1, bias=False):
         super().__init__()
         k, s, p = repeat(k), repeat(s), repeat(p)
@@ -140,4 +136,4 @@ class SepConv3D_MS(nn.Module):
 
     @staticmethod
     def of(base_conv):
-        return partial(SepConv3D_MS, base_conv)
+        return partial(S3Conv1, base_conv)
