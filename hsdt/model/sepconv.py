@@ -9,7 +9,7 @@ def repeat(x):
     return [x] * 3
 
 
-class S3Conv_Sep_PD(nn.Module):
+class SepConv_PD(nn.Module):
     def __init__(self, BASECONV, in_ch, out_ch, k, s=1, p=1, bias=False):
         super().__init__()
         k, s, p = repeat(k), repeat(s), repeat(p)
@@ -25,10 +25,10 @@ class S3Conv_Sep_PD(nn.Module):
 
     @staticmethod
     def of(base_conv):
-        return partial(S3Conv_Sep_PD, base_conv)
+        return partial(SepConv_PD, base_conv)
 
 
-class S3Conv_Sep(nn.Module):
+class SepConv_DP(nn.Module):
     def __init__(self, BASECONV, in_ch, out_ch, k, s=1, p=1, bias=False):
         super().__init__()
         k, s, p = repeat(k), repeat(s), repeat(p)
@@ -44,10 +44,10 @@ class S3Conv_Sep(nn.Module):
 
     @staticmethod
     def of(base_conv):
-        return partial(S3Conv_Sep, base_conv)
+        return partial(SepConv_DP, base_conv)
 
 
-class S3Conv_Sep_CA(nn.Module):
+class SepConv_DP_CA(nn.Module):
     def __init__(self, BASECONV, in_ch, out_ch, k, s=1, p=1, bias=False):
         super().__init__()
         k, s, p = repeat(k), repeat(s), repeat(p)
@@ -65,7 +65,7 @@ class S3Conv_Sep_CA(nn.Module):
 
     @staticmethod
     def of(base_conv):
-        return partial(S3Conv_Sep_CA, base_conv)
+        return partial(SepConv_DP_CA, base_conv)
 
 
 class S3Conv(nn.Module):

@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from sync_batchnorm import SynchronizedBatchNorm3d
 
 from .attention import TransformerBlock
-from .sepconv import S3Conv_Sep, S3Conv_Sep_CA, S3Conv
+from .sepconv import SepConv_DP, SepConv_DP_CA, S3Conv
 
 BatchNorm3d = SynchronizedBatchNorm3d
 Conv3d = S3Conv.of(nn.Conv3d)

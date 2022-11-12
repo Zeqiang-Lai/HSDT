@@ -153,8 +153,8 @@ def hsdt_conv3d():
 def hsdt_s3conv_sep():
     from . import arch
     import torch.nn as nn
-    from .sepconv import S3Conv_Sep
-    arch.Conv3d = S3Conv_Sep.of(nn.Conv3d)
+    from .sepconv import SepConv_DP
+    arch.Conv3d = SepConv_DP.of(nn.Conv3d)
     net = HSDT(1, 16, 5, [1, 3])
     net.use_2dconv = False
     net.bandwise = False
