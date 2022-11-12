@@ -12,15 +12,20 @@ result_dir = 'results/Lehavim_0910-1635'
 
 models = [
     ('BM4D', os.path.join(result_dir, 'BM4D.mat')),
-    ('TDL', os.path.join(result_dir, 'TDL.mat')),
+    # ('TDL', os.path.join(result_dir, 'TDL.mat')),
     ('HSDT', os.path.join(result_dir, 'HSDT.mat')),
     ('LLRT', os.path.join(result_dir, 'LLRT.mat')),
-    ('ITSReg', os.path.join(result_dir, 'ITSReg.mat')),
+    # ('ITSReg', os.path.join(result_dir, 'ITSReg.mat')),
     ('NGMeet', os.path.join(result_dir, 'NGmeet.mat')),
     ('WLRTR', os.path.join(result_dir, 'WLRTR.mat')),
     ('KBR', os.path.join(result_dir, 'KBR.mat')),
     ('Reference', os.path.join(result_dir, 'Reference.mat')),
 ]
+
+colors = {
+    'HSDT': 'blue',
+    'Reference': 'black',
+}
 
 x = 100
 y = 100
@@ -30,7 +35,9 @@ for name, path in models:
         pred = pred['pred']
     else:
         pred = pred['output']
-    plt.plot(pred[x, y, :], label=name)
+    
+    color = colors.get(name, None)
+    plt.plot(pred[x,y,:], label=name, color=color)
 
 plt.legend(loc='lower right', fontsize=12.5)
 plt.grid(linestyle='-.', linewidth=1.5, zorder=0)
