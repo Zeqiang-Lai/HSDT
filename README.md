@@ -63,10 +63,10 @@ out = block(x) # [4,16,31,64,64]
 </details>
 
 
-## Citations
+## Citation
 
 ```bibtex
-@misc{lai_hsdt_2022,
+@article{lai2022hsdt,
     title={Hybrid Spectral Denoising Transformer with Learnable Query}, 
     author={Zeqiang Lai, Ying Fu},
     year={2022},
