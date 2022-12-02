@@ -1,10 +1,10 @@
 # HSDT
 
-PyTorch Implementation of [Hybrid Spectral Denoising Transformer with Learnable Query]()
+Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with Learnable Query]().
+
+*Zeqiang Lai, [Ying Fu](https://ying-fu.github.io/)*.
 
 <img src="asset/arch.png" width="550px"/> 
-
-<br/>
 
 🌟 **Hightlights**
 
