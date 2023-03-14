@@ -4,7 +4,7 @@ Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with L
 
 *Zeqiang Lai, [Ying Fu](https://ying-fu.github.io/)*.
 
-<img src="asset/arch.png" width="550px"/> 
+<img src="asset/arch.png" width="600px"/> 
 
 🌟 **Hightlights**
 

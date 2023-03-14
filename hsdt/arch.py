@@ -3,12 +3,11 @@ from collections import OrderedDict
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from sync_batchnorm import SynchronizedBatchNorm3d
 
 from .attention import TransformerBlock
 from .sepconv import SepConv_DP, SepConv_DP_CA, S3Conv
 
-BatchNorm3d = SynchronizedBatchNorm3d
+BatchNorm3d = nn.BatchNorm3d
 Conv3d = S3Conv.of(nn.Conv3d)
 TransformerBlock = TransformerBlock
 IsConvImpl = False
@@ -62,6 +61,7 @@ class Encoder(nn.Module):
 
 
 class Decoder(nn.Module):
+    count = 1
     def __init__(self, channels, num_half_layer, sample_idx, Fusion=None):
         super(Decoder, self).__init__()
         # Decoder

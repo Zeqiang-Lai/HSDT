@@ -1,4 +1,5 @@
 *.mat
+*.png
 checkpoints
 results
 data
