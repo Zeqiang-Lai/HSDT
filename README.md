@@ -8,9 +8,9 @@ Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with L
 
 🌟 **Hightlights**
 
-- We propose a vision transformer HSDF for HSI denoising, with a novel SSA to capture the long-range spectral dependency and correlations.
-- We propose to train the SSA with learnable query as guidance piloting the attention on informative bands.
-- We propose an efficient S3Conv unit to inject inductive bias with spatial-spectral meaningful features.
+- Superior hybrid spectral denoising transformer (HSDT), powered by a novel 3D guided spectral self-attention (GSSA), 3D spectral-spatial seperable convolution (S3Conv), and self-modulated feed-forward network (SM-FFN).
+- Super fast convergence, 1 epoch to reach 39.5 PSNR on ICVL Gaussian 50, 3 epoch surpasses QRNN3D.
+- Super lightweight, HSDT-S achieves comparable performance with SOTA with only 0.13M parameters, and HSDT-M outperforms SOTA by a large margin with only 0.52M parameters.
 
 ## Usage
 
