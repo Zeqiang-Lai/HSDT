@@ -1,6 +1,6 @@
 # HSDT
 
-Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with Learnable Query]().
+Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with Learnable Query](http://arxiv.org/abs/2303.09040).
 
 *Zeqiang Lai, [Ying Fu](https://ying-fu.github.io/)*.
 
@@ -66,9 +66,10 @@ out = block(x) # [4,16,31,64,64]
 ## Citation
 
 ```bibtex
-@article{lai2022hsdt,
-    title={Hybrid Spectral Denoising Transformer with Learnable Query}, 
-    author={Zeqiang Lai, Ying Fu},
-    year={2022},
+@misc{lai2023hsdt,
+  author = {Lai, Zeqiang and Fu, Ying},
+  title = {Hybrid Spectral Denoising Transformer with Learnable Query},
+  publisher = {arXiv},
+  year = {2023},
 }
 ```
