@@ -21,7 +21,7 @@ Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with L
 
 ## Usage
 
-Download the pretrained model at [Github Release]().
+Download the pretrained model at [Github Release](https://github.com/Zeqiang-Lai/HSDT/releases/tag/v1.0).
 
 - Training, testing, and visualize results with [HSIR](https://github.com/bit-isp/HSIR).
 
