@@ -56,6 +56,11 @@ block = S3Conv(16, 16, 3, 1, 1)
 out = block(x) # [4,16,31,64,64]
 ```
 
+Tips for training
+
+- use `xavier_normal_` weight initilization.
+
+
 ## Performance
 
 <details>
