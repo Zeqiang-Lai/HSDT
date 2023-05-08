@@ -8,13 +8,13 @@ Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with L
 
 🌟 **Hightlights**
 
-- *Superior hybrid spectral denoising transformer* (HSDT),
-    - powered by a novel 3D guided spectral self-attention (GSSA),
-    - 3D spectral-spatial seperable convolution (S3Conv), 
-    - and self-modulated feed-forward network (SM-FFN).
+- *Superior hybrid spectral denoising transformer* (HSDT), powered by
+    - a novel 3D guided spectral self-attention (GSSA),
+    - 3D spectral-spatial seperable convolution (S3Conv), and
+    - self-modulated feed-forward network (SM-FFN).
 - *Super fast convergence*
     - 1 epoch to reach 39.5 PSNR on ICVL Gaussian 50.
-    - 3 epoch surpasses QRNN3D.
+    - 3 epochs surpasses QRNN3D trained with 30 epochs.
 - *Super lightweight*
     - HSDT-S achieves comparable performance against the SOTA with only 0.13M parameters.
     - HSDT-M outperforms the SOTA by a large margin with only 0.52M parameters.
