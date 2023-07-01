@@ -1,16 +1,10 @@
-<p align="center">
-  <h1 align="center"><ins>HSDT</ins>: Hybrid Spectral Denoising Transformer</h1>
-  <p align="center">
-    <a href="https://zeqiang-lai.github.io/">Zeqiang Lai</a>
-    ·
-    <a href="https://ying-fu.github.io/">Ying Fu</a>
-</p>
-<p align="center">
-<img src="asset/arch.png" width="700px"/> 
-</p>
-</p>
+# HSDT
 
-##
+Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with Learnable Query](http://arxiv.org/abs/2303.09040).
+
+*[Zeqiang Lai](https://zeqiang-lai.github.io/), [Ying Fu](https://ying-fu.github.io/)*.
+
+<img src="asset/arch.png" width="600px"/> 
 
 🌟 **Hightlights**
 
