@@ -1,6 +1,6 @@
 # HSDT
 
-Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with Learnable Query](http://arxiv.org/abs/2303.09040).
+Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with Learnable Query](http://arxiv.org/abs/2303.09040). ICCV 2023
 
 *[Zeqiang Lai](https://zeqiang-lai.github.io/), [Ying Fu](https://ying-fu.github.io/)*.
 
@@ -78,10 +78,10 @@ Tips for training
 ## Citation
 
 ```bibtex
-@misc{lai2023hsdt,
+@inproceedings{lai2023hsdt,
   author = {Lai, Zeqiang and Fu, Ying},
   title = {Hybrid Spectral Denoising Transformer with Learnable Query},
-  publisher = {arXiv},
+  booktitle={Proceedings of the IEEE International Conference on Computer Vision},
   year = {2023},
 }
 ```
