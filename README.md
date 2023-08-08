@@ -1,8 +1,8 @@
 # HSDT
 
-Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with Learnable Query](http://arxiv.org/abs/2303.09040). ICCV 2023
+Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with Guided Attention](http://arxiv.org/abs/2303.09040). ICCV 2023
 
-*[Zeqiang Lai](https://zeqiang-lai.github.io/), [Ying Fu](https://ying-fu.github.io/)*.
+*[Zeqiang Lai](https://zeqiang-lai.github.io/), Chenggang Yan, [Ying Fu](https://ying-fu.github.io/)*.
 
 <img src="asset/arch.png" width="600px"/> 
 
@@ -79,8 +79,8 @@ Tips for training
 
 ```bibtex
 @inproceedings{lai2023hsdt,
-  author = {Lai, Zeqiang and Fu, Ying},
-  title = {Hybrid Spectral Denoising Transformer with Learnable Query},
+  author = {Lai, Zeqiang and Chenggang, Yan and Fu, Ying},
+  title = {Hybrid Spectral Denoising Transformer with Guided Attention},
   booktitle={Proceedings of the IEEE International Conference on Computer Vision},
   year = {2023},
 }
