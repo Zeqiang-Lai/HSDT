@@ -1,4 +1,6 @@
 # HSDT
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/hybrid-spectral-denoising-transformer-with/hyperspectral-image-denoising-on-icvl-hsi-1)](https://paperswithcode.com/sota/hyperspectral-image-denoising-on-icvl-hsi-1?p=hybrid-spectral-denoising-transformer-with)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/hybrid-spectral-denoising-transformer-with/hyperspectral-image-denoising-on-icvl-hsi-2)](https://paperswithcode.com/sota/hyperspectral-image-denoising-on-icvl-hsi-2?p=hybrid-spectral-denoising-transformer-with)
 
 Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with Guided Attention](http://arxiv.org/abs/2303.09040). ICCV 2023
 
