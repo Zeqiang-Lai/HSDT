@@ -60,7 +60,7 @@ out = block(x) # [4,16,31,64,64]
 
 Tips for training
 
-- use `xavier_normal_` weight initilization.
+- use `xavier_normal_` weight initialization.
 
 
 ## Performance
