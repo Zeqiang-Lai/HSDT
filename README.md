@@ -21,6 +21,12 @@ Official PyTorch Implementation of [Hybrid Spectral Denoising Transformer with G
     - HSDT-S achieves comparable performance against the SOTA with only 0.13M parameters.
     - HSDT-M outperforms the SOTA by a large margin with only 0.52M parameters.
 
+🤗 **See Also**
+
+- [MAN](https://github.com/Zeqiang-Lai/MAN) : Another superior HSI denoising network based on RNN.
+- [DPHSIR](https://github.com/Zeqiang-Lai/DPHSIR) : Plug-and-play ADMM that utilize HSI denoiser for unified HSI restoration without any training.
+- [HSIR](https://github.com/bit-isp/HSIR/) : Out-of-box HSI denoising training, testing, and visualization framework.
+
 ## Usage
 
 Download the pretrained model at [Github Release](https://github.com/Zeqiang-Lai/HSDT/releases/tag/v1.0).
@@ -73,7 +79,16 @@ Tips for training
 <details>
 <summary>Complex denoising</summary>
 <img src="asset/complex.png" width="800px"/> 
+</details>
 
+<details>
+<summary>Real/CAVE denoising</summary>
+<img src="asset/real_cave.png" width="400px"/> 
+</details>
+
+<details>
+<summary>Comparsion with other methods</summary>
+<img src="asset/cmp.png" width="800px"/> 
 </details>
 
 
